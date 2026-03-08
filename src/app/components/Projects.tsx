@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useState, useRef, RefObject } from 'react';
-import threadRelayImage from '@/assets/23e27c40b050819636543fef7d19bd22992bd486.png';
+import threadRelayBugReport from '@/assets/threadrelay-bug-report.png';
+import threadRelayLinearIssue from '@/assets/threadrelay-linear-issue.png';
 
 interface ProjectsProps {
   containerRef: RefObject<HTMLDivElement>;
@@ -103,7 +104,7 @@ export function Projects({ containerRef }: ProjectsProps) {
             onClick={handleCardClick}
             whileHover={{ scale: 1.01 }}
           >
-            {/* Front of card - Image */}
+            {/* Front of card - Two ThreadRelay screenshots */}
             <div 
               className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl bg-black border-8 border-black group"
               style={{ 
@@ -111,11 +112,18 @@ export function Projects({ containerRef }: ProjectsProps) {
                 WebkitBackfaceVisibility: 'hidden'
               }}
             >
-              <motion.img 
-                src={threadRelayImage} 
-                alt="ThreadRelay Project" 
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full flex bg-gray-900">
+                <motion.img 
+                  src={threadRelayBugReport} 
+                  alt="ThreadRelay – Bug report in Mattermost (Linear bot)" 
+                  className="w-1/2 h-full object-contain object-top"
+                />
+                <motion.img 
+                  src={threadRelayLinearIssue} 
+                  alt="ThreadRelay – Bug created in Linear" 
+                  className="w-1/2 h-full object-contain"
+                />
+              </div>
               
               {/* Bottom info overlay on front */}
               <div className="absolute bottom-0 left-0 right-0 p-8 bg-black">
