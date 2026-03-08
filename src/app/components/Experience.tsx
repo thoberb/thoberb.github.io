@@ -278,9 +278,10 @@ export function Experience({ containerRef }: ExperienceProps) {
         </>
       )}
       
-      {/* Section title - top area */}
-      <div className="pt-16 pb-8 px-6 md:px-20 flex-shrink-0 flex justify-center">
-        <div className="max-w-[1280px] w-full">
+      {/* Espace fixe ; un peu réduit pour rapprocher titre et carousel */}
+      <div className="h-[6rem] flex-shrink-0" aria-hidden />
+      <div className="absolute left-0 right-0 top-55 px-6 md:px-20 pointer-events-none">
+        <div className="max-w-[1280px] mx-auto">
           <motion.p
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -292,9 +293,12 @@ export function Experience({ containerRef }: ExperienceProps) {
         </div>
       </div>
 
-      {/* Carousel viewport - middle area with fixed height */}
-      <div className="flex-1 relative overflow-hidden flex items-center justify-center">
-        <div className="w-full h-full relative flex items-center justify-center">
+      {/* Bloc cartes + frise centré verticalement dans la section */}
+      <div className="flex-1 flex flex-col justify-center min-h-0 overflow-hidden">
+        <div className="flex flex-col items-center gap-10">
+          {/* Carousel - hauteur fixe pour que la frise reste collée en dessous */}
+          <div className="w-full h-[460px] relative flex-shrink-0 flex items-center justify-center">
+          <div className="w-full h-full relative flex items-center justify-center">
           {/* Cards container - absolute positioning */}
           <div className="absolute inset-0 flex items-center justify-center">
             {experiences.map((exp, index) => {
@@ -342,7 +346,7 @@ export function Experience({ containerRef }: ExperienceProps) {
                 >
                   {exp.isFuture ? (
                     // Future card with special design
-                    <div className="bg-white rounded-3xl p-12 md:p-14 shadow-xl border-2 border-dashed border-gray-300 h-[580px] flex flex-col items-center justify-center text-center overflow-hidden">
+                    <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-dashed border-gray-300 h-[420px] flex flex-col items-center justify-center text-center overflow-hidden">
                       <h2 className="text-4xl md:text-5xl text-gray-900 mb-4 leading-tight">
                         {exp.title}
                       </h2>
@@ -355,27 +359,27 @@ export function Experience({ containerRef }: ExperienceProps) {
                     </div>
                   ) : (
                     // Regular experience card - fixed height with scroll
-                    <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl border border-gray-100 h-[580px] overflow-y-auto">
-                      <div className="mb-8">
-                        <h2 className="text-3xl md:text-4xl text-gray-900 mb-3 leading-tight">
+                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 h-[420px] overflow-y-auto">
+                      <div className="mb-5">
+                        <h2 className="text-2xl md:text-3xl text-gray-900 mb-2 leading-tight">
                           {exp.title}
                         </h2>
                         {exp.company && (
-                          <p className="text-xl md:text-2xl text-gray-600 mb-2">{exp.company}</p>
+                          <p className="text-lg md:text-xl text-gray-600 mb-1">{exp.company}</p>
                         )}
                         {exp.description && (
-                          <p className="text-base text-gray-500">
+                          <p className="text-sm text-gray-500">
                             {exp.description}
                           </p>
                         )}
                       </div>
 
                       {exp.responsibilities.length > 0 && (
-                        <div className="mb-8">
+                        <div className="mb-5">
                           {exp.responsibilities.map((item, idx) => (
                             <p
                               key={idx}
-                              className="text-sm md:text-base text-gray-700 mb-3 leading-relaxed"
+                              className="text-sm md:text-base text-gray-700 mb-2 leading-relaxed"
                             >
                               {item}
                             </p>
@@ -385,12 +389,12 @@ export function Experience({ containerRef }: ExperienceProps) {
 
                       {exp.focusAreas.length > 0 && (
                         <div>
-                          <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">Focus Areas</p>
-                          <div className="flex flex-wrap gap-2">
+                          <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Focus Areas</p>
+                          <div className="flex flex-wrap gap-1.5">
                             {exp.focusAreas.map((area, idx) => (
                               <span
                                 key={idx}
-                                className="text-xs text-gray-700 px-3 py-2 bg-gray-50 border border-gray-200 rounded-full"
+                                className="text-xs text-gray-700 px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-full"
                               >
                                 {area}
                               </span>
@@ -405,10 +409,10 @@ export function Experience({ containerRef }: ExperienceProps) {
             })}
           </div>
         </div>
-      </div>
+          </div>
 
-      {/* Timeline Navigation - bottom area, fixed position */}
-      <div className="px-6 md:px-12 lg:px-24 pb-16 flex-shrink-0">
+          {/* Timeline - juste sous les cartes */}
+          <div className="px-6 md:px-12 lg:px-24 pb-4 w-full flex-shrink-0">
         <div className="max-w-4xl mx-auto relative">
           {/* Timeline line */}
           <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-200" />
@@ -457,6 +461,8 @@ export function Experience({ containerRef }: ExperienceProps) {
               </button>
             ))}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>

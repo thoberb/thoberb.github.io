@@ -66,8 +66,8 @@ export function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 backdrop-blur-md z-50">
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="flex items-center justify-between">
+      <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 py-6">
+        <div className="flex items-center justify-between w-full">
           <button
             onClick={() => scrollToSection('home')}
             className={`text-sm ${textColor} ${defaultOpacity} hover:opacity-100 tracking-wider transition-all duration-200`}

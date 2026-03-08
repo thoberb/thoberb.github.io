@@ -228,8 +228,10 @@ export function Projects({ containerRef }: ProjectsProps) {
       <div className="absolute top-0 right-0 w-12 h-12 overflow-hidden pointer-events-none">
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full" />
       </div>
-        <div className="pointer-events-auto pt-16 pb-6 px-6 md:px-20 flex-shrink-0">
-          <div className="max-w-[1280px] mx-auto">
+        {/* Espace fixe ; un peu réduit pour rapprocher titre et carousel (comme Experience) */}
+        <div className="h-[6rem] flex-shrink-0" aria-hidden />
+        <div className="absolute left-0 right-0 top-50 px-6 md:px-20 pointer-events-none">
+          <div className="max-w-[1280px] w-full mx-auto text-left">
             <p className="text-sm uppercase tracking-wider text-gray-400">Last Projects</p>
           </div>
         </div>
@@ -247,7 +249,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                   key={`mask-${index}`}
                   initial={false}
                   animate={{
-                    scale: currentIndex === index ? 1 : 0.9,
+                    scale: currentIndex === index ? 1 : 0.82,
                     x: `${offset}%`
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -272,7 +274,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                 key={proj.id}
                 initial={false}
                 animate={{
-                  scale: isActive ? 1 : 0.9,
+                  scale: isActive ? 1 : 0.82,
                   opacity: isActive ? 1 : 0.5,
                   filter: isActive ? 'blur(0px)' : 'blur(2px)',
                   x: `${offset}%`
