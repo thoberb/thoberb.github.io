@@ -17,8 +17,8 @@ export function Contact({ containerRef }: ContactProps) {
     container: containerRef
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.2], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -150]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,7 +36,7 @@ export function Contact({ containerRef }: ContactProps) {
   }, []);
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, transition: { duration: 0.3 } },
     visible: {
       opacity: 1,
       transition: {
@@ -47,13 +47,17 @@ export function Contact({ containerRef }: ContactProps) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }
+    },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };

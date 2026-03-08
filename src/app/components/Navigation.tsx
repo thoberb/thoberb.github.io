@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 
 export function Navigation() {
   const [currentTheme, setCurrentTheme] = useState<'dark' | 'light'>('dark');
@@ -68,23 +69,29 @@ export function Navigation() {
     <nav className="fixed top-0 left-0 right-0 backdrop-blur-md z-50">
       <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 py-6">
         <div className="flex items-center justify-between w-full">
-          <button
+          <motion.button
             onClick={() => scrollToSection('home')}
-            className={`text-sm ${textColor} ${defaultOpacity} hover:opacity-100 tracking-wider transition-all duration-200`}
+            className={`text-sm ${textColor} ${defaultOpacity} hover:opacity-100 tracking-wider`}
             style={{ fontWeight: 500 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.2 }}
           >
             B.B.
-          </button>
+          </motion.button>
           <div className="flex gap-8">
             {navItems.map(item => (
-              <button
+              <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm ${textColor} ${defaultOpacity} hover:opacity-100 transition-all duration-200`}
+                className={`text-sm ${textColor} ${defaultOpacity} hover:opacity-100`}
                 style={{ fontWeight: 400 }}
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
               >
                 {item.label}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>

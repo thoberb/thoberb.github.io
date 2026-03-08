@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useState, useRef, useEffect, RefObject } from 'react';
 import threadRelayCard from '@/assets/threadrelay-card.svg';
 import knowledgeGraphCard from '@/assets/knowledge-graph-explorer-card.svg';
@@ -34,9 +34,18 @@ export function Projects({ containerRef }: ProjectsProps) {
 
   const knowledgeGraphTechStack = ['React', 'TypeScript', '3D Force Graph (WebGL)'];
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+    container: containerRef
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -150]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
+      ([entry]) => setIsInView(entry?.isIntersecting ?? false),
       { threshold: 0.3 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -70,6 +79,12 @@ export function Projects({ containerRef }: ProjectsProps) {
     section.addEventListener('wheel', handleWheel, { passive: false });
     return () => section.removeEventListener('wheel', handleWheel);
   }, [isInView, currentIndex]);
+
+  // Remettre la carte à l'endroit quand on change de projet
+  useEffect(() => {
+    if (currentIndex === 0) setIsFlippedKG(false);
+    else setIsFlippedTR(false);
+  }, [currentIndex]);
 
   const projects = [
     {
@@ -143,7 +158,7 @@ export function Projects({ containerRef }: ProjectsProps) {
         </>
       ),
       back: (
-        <div className="h-full flex flex-col justify-between overflow-y-auto">
+        <div className="h-full flex flex-col justify-between overflow-hidden">
           <div>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Knowledge Graph Explorer</h3>
             <p className="text-lg md:text-xl text-gray-600 mb-4">
@@ -170,9 +185,6 @@ export function Projects({ containerRef }: ProjectsProps) {
                 </span>
               ))}
             </div>
-            <p className="text-xs text-gray-500 italic">
-              Notes: Screenshots and dataset have been anonymized to remove sensitive information.
-            </p>
           </div>
         </div>
       )
@@ -216,10 +228,10 @@ export function Projects({ containerRef }: ProjectsProps) {
         </div>
       </div>
 
-      {/* Contenu (coins, titre, carousel, nav) au-dessus : z-index 1 + isolation pour que le carousel reste dans cette couche */}
-      <div
+      {/* Contenu (coins, titre, carousel) : slide up fade out au scroll comme les autres sections */}
+      <motion.div
         className="absolute inset-0 flex flex-col pointer-events-none"
-        style={{ zIndex: 1, isolation: 'isolate' }}
+        style={{ zIndex: 1, isolation: 'isolate', opacity, y }}
       >
       {/* Rounded corner decoration */}
       <div className="absolute top-0 left-0 w-12 h-12 overflow-hidden pointer-events-none">
@@ -230,7 +242,7 @@ export function Projects({ containerRef }: ProjectsProps) {
       </div>
         {/* Espace fixe ; un peu réduit pour rapprocher titre et carousel (comme Experience) */}
         <div className="h-[6rem] flex-shrink-0" aria-hidden />
-        <div className="absolute left-0 right-0 top-50 px-6 md:px-20 pointer-events-none">
+        <div className="absolute left-0 right-0 top-40 px-6 md:px-20 pointer-events-none">
           <div className="max-w-[1280px] w-full mx-auto text-left">
             <p className="text-sm uppercase tracking-wider text-gray-400">Last Projects</p>
           </div>
@@ -331,7 +343,7 @@ export function Projects({ containerRef }: ProjectsProps) {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

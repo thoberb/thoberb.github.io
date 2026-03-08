@@ -246,15 +246,17 @@ export function Experience({ containerRef }: ExperienceProps) {
     };
   }, [isInView, currentIndex, experiences.length]);
 
+  const ease = [0.22, 1, 0.36, 1] as const;
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.5, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.8, ease }
     }
   };
 
@@ -277,10 +279,14 @@ export function Experience({ containerRef }: ExperienceProps) {
           </div>
         </>
       )}
-      
+
+      <motion.div
+        className="flex flex-1 flex-col min-h-0"
+        style={{ opacity, y }}
+      >
       {/* Espace fixe ; un peu réduit pour rapprocher titre et carousel */}
       <div className="h-[6rem] flex-shrink-0" aria-hidden />
-      <div className="absolute left-0 right-0 top-55 px-6 md:px-20 pointer-events-none">
+      <div className="absolute left-0 right-0 top-48 px-6 md:px-20 pointer-events-none">
         <div className="max-w-[1280px] mx-auto">
           <motion.p
             initial="hidden"
@@ -436,7 +442,7 @@ export function Experience({ containerRef }: ExperienceProps) {
                 className="flex flex-col items-center group cursor-pointer transition-transform hover:scale-110"
               >
                 <motion.div 
-                  className="w-3 h-3 rounded-full mb-4 transition-all"
+                  className="w-3 h-3 rounded-full mb-6 transition-all"
                   initial={false}
                   animate={{
                     scale: index === currentIndex ? 1.5 : 1,
@@ -453,11 +459,6 @@ export function Experience({ containerRef }: ExperienceProps) {
                 >
                   {exp.year}
                 </span>
-                {exp.endDate && (
-                  <span className="text-xs text-gray-400 mt-1">
-                    {exp.endDate === 'Present' ? 'Present' : exp.endDate}
-                  </span>
-                )}
               </button>
             ))}
           </div>
@@ -465,6 +466,7 @@ export function Experience({ containerRef }: ExperienceProps) {
         </div>
         </div>
       </div>
+      </motion.div>
     </section>
   );
 }

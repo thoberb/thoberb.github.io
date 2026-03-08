@@ -44,20 +44,22 @@ export function About({ containerRef }: AboutProps) {
     'Rapid prototyping'
   ];
 
+  const ease = [0.22, 1, 0.36, 1] as const;
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.5, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.6, ease }
     }
   };
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, transition: { duration: 0.3 } },
     visible: {
       opacity: 1,
       transition: {
@@ -68,14 +70,15 @@ export function About({ containerRef }: AboutProps) {
   };
 
   const tagVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.35, ease }
+    },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.4, ease }
     }
   };
 
@@ -115,9 +118,14 @@ export function About({ containerRef }: AboutProps) {
           </p>
         </motion.div>
 
-        <h2 className="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-12 max-w-4xl leading-tight">
+        <motion.h2
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeUpVariants}
+          className="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-12 max-w-4xl leading-tight"
+        >
           I turn product ideas into working software.
-        </h2>
+        </motion.h2>
 
         <motion.p
           initial="hidden"

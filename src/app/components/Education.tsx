@@ -36,38 +36,41 @@ export function Education({ containerRef }: EducationProps) {
     return () => observer.disconnect();
   }, []);
 
+  const ease = [0.22, 1, 0.36, 1] as const;
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.5, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.8, ease }
     }
   };
 
   const staggerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, transition: { duration: 0.3 } },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
         delayChildren: 0.3
       }
     }
   };
 
   const blockVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.4, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.6, ease }
     }
   };
 
@@ -212,7 +215,7 @@ export function Education({ containerRef }: EducationProps) {
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                       transition={{
                         duration: 0.5,
-                        delay: 0.6 + (index * 0.15) + (themeIndex * 0.08),
+                        delay: 0.5 + (index * 0.15) + (themeIndex * 0.08),
                         ease: [0.22, 1, 0.36, 1]
                       }}
                       whileHover={{

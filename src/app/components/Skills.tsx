@@ -36,20 +36,22 @@ export function Skills({ containerRef }: SkillsProps) {
     return () => observer.disconnect();
   }, []);
 
+  const ease = [0.22, 1, 0.36, 1] as const;
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.5, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.8, ease }
     }
   };
 
   const staggerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, transition: { duration: 0.3 } },
     visible: {
       opacity: 1,
       transition: {
@@ -60,14 +62,15 @@ export function Skills({ containerRef }: SkillsProps) {
   };
 
   const categoryVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.4, ease }
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.6, ease }
     }
   };
 

@@ -1,7 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { TypewriterText } from './TypewriterText';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef, useState, RefObject } from 'react';
+import { useRef, useState, useEffect, RefObject } from 'react';
 
 interface HeroProps {
   containerRef: RefObject<HTMLDivElement>;
@@ -10,6 +10,16 @@ interface HeroProps {
 export function Hero({ containerRef }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -45,7 +55,7 @@ export function Hero({ containerRef }: HeroProps) {
         }} />
       </div>
 
-      {/* Content - left aligned */}
+      {/* Content - left aligned, animates in/out with scroll */}
       <motion.div 
         className="relative z-10 w-full" 
         style={{ 
@@ -55,7 +65,12 @@ export function Hero({ containerRef }: HeroProps) {
           maxWidth: '680px'
         }}
       >
-        <div className="space-y-4">
+        <motion.div
+          className="space-y-4"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <h1 className="text-5xl md:text-7xl text-white whitespace-nowrap">
             Hi, I'm Blandine Berthod.
           </h1>
@@ -69,7 +84,7 @@ export function Hero({ containerRef }: HeroProps) {
             Designing and building products end-to-end.<br />
             From user problems to shipped solutions.
           </p>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator - more spacing */}
