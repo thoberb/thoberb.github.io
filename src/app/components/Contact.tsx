@@ -1,4 +1,4 @@
-import { Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail, FileDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState, useRef, RefObject } from 'react';
 import { useScroll, useTransform } from 'motion/react';
@@ -207,6 +207,26 @@ export function Contact({ containerRef }: ContactProps) {
             <Mail className="w-5 h-5 text-white/60 group-hover:text-white transition-colors duration-300 relative z-10" />
             <span className="text-base font-medium text-white/80 group-hover:text-white transition-colors duration-300 relative z-10 tracking-wide">
               Email
+            </span>
+          </motion.a>
+
+          <motion.a
+            variants={itemVariants}
+            href="/BlandineBerthodCV.pdf"
+            download="BlandineBerthodCV.pdf"
+            className="group relative flex items-center justify-center gap-4 px-8 py-5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-white/10"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '100%' }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+            <FileDown className="w-5 h-5 text-white/60 group-hover:text-white transition-colors duration-300 relative z-10" />
+            <span className="text-base font-medium text-white/80 group-hover:text-white transition-colors duration-300 relative z-10 tracking-wide">
+              Resume
             </span>
           </motion.a>
         </motion.div>
