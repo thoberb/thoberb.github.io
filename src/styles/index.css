@@ -1,3 +1,35 @@
-@import './fonts.css';
 @import './tailwind.css';
-@import './theme.css';
+
+/* Default background so the page isn’t white before React mounts or if assets fail */
+body {
+  background-color: #050505;
+  min-height: 100vh;
+}
+
+/* Bug 1: scrollbars only when really needed – overlay style, thin, no reserved gutter */
+.overflow-y-auto {
+  scrollbar-gutter: auto;
+  scrollbar-width: thin;
+}
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+/* Overlay: only show scrollbar when hovering the scrollable area (reduces “always visible” feel) */
+@media (hover: hover) {
+  .overflow-y-auto {
+    scrollbar-width: thin;
+  }
+  .overflow-y-auto:not(:hover)::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+}

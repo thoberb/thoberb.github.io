@@ -1,4 +1,26 @@
+/* stylelint-disable at-rule-no-unknown -- Tailwind v4 uses @theme, @source */
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
+
+/* Design tokens – typography & spacing for reuse across atoms/organisms */
+@theme {
+  /* Section labels (e.g. "Key Features", "Tech Stack") */
+  --text-section-label: 0.75rem;
+  --text-section-label--line-height: 1rem;
+  /* Section titles (e.g. "Last Projects", "About me") */
+  --text-section-title: 0.875rem;
+  --text-section-title--line-height: 1.25rem;
+  /* Card / block titles */
+  --text-card-title: 1.875rem;
+  --text-card-title--line-height: 2.25rem;
+  /* Body */
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  /* Display / hero */
+  --text-display: clamp(2.5rem, 8vw, 6rem);
+  --text-display--line-height: 1.1;
+}

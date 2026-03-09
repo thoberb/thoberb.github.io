@@ -1,0 +1,13 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "Tailwind v4: define design tokens (e.g. --text-*, --color-*)"
+    },
+    {
+      "name": "@source",
+      "description": "Tailwind v4: glob of files to scan for class names"
+    }
+  ]
+}
