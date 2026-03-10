@@ -295,9 +295,9 @@ export function Experience({ containerRef }: ExperienceProps) {
         className="flex flex-1 flex-col min-h-0"
         style={{ opacity, y }}
       >
-      {/* Espace fixe ; un peu réduit pour rapprocher titre et carousel */}
-      <div className="h-[6rem] flex-shrink-0" aria-hidden />
-      <div className="absolute left-0 right-0 top-48 px-6 md:px-20 pointer-events-none">
+      {/* Espace fixe ; plus compact sur petit écran pour que le titre reste au-dessus des cartes */}
+      <div className="h-[3.5rem] md:h-[6rem] flex-shrink-0" aria-hidden />
+      <div className="absolute left-0 right-0 top-24 md:top-48 px-6 md:px-20 pointer-events-none z-20">
         <div className="max-w-[1280px] mx-auto">
           <motion.p
             initial="hidden"

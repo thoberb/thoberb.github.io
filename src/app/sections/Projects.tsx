@@ -277,7 +277,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                     x: `${offset}%`
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-4xl min-h-[60vh] md:min-h-0 md:aspect-[16/10] rounded-3xl bg-white pointer-events-none"
+                  className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-4xl min-h-[72vh] md:min-h-0 md:aspect-[16/10] rounded-3xl bg-white pointer-events-none"
                   style={{ transformOrigin: 'center center', zIndex: 0 }}
                 />
               );
@@ -317,7 +317,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                     animate={{ rotateX: proj.isFlipped ? 180 : 0 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformStyle: 'preserve-3d' }}
-                    className="relative w-full min-h-[60vh] md:min-h-0 md:aspect-[16/10] cursor-pointer"
+                    className="relative w-full min-h-[72vh] md:min-h-0 md:aspect-[16/10] cursor-pointer"
                     onClick={() => isActive && proj.setFlipped((f) => !f)}
                     whileHover={isActive ? { scale: 1.01 } : {}}
                   >
@@ -330,7 +330,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                     </div>
                     {/* Back */}
                     <div
-                      className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl bg-white border-8 border-black p-8 md:p-12"
+                      className="absolute inset-0 rounded-3xl overflow-y-auto overflow-x-hidden shadow-2xl bg-white border-8 border-black p-8 md:p-12"
                       style={{
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
@@ -344,8 +344,8 @@ export function Projects({ containerRef }: ProjectsProps) {
               </motion.div>
             );
           })}
-            {/* Click to flip : juste sous la carte */}
-            <p className="absolute bottom-[18%] left-1/2 -translate-x-1/2 text-center text-sm text-gray-500 uppercase tracking-wider pointer-events-auto whitespace-nowrap">
+            {/* Click to flip : sous la carte ; plus proche sur desktop (carte aspect 16/10), plus bas sur mobile (carte 72vh) */}
+            <p className="absolute bottom-4 md:bottom-[15%] left-1/2 -translate-x-1/2 text-center text-sm text-gray-500 uppercase tracking-wider pointer-events-none whitespace-nowrap z-20">
               <motion.span
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
