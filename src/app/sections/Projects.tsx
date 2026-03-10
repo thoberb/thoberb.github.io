@@ -277,7 +277,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                     x: `${offset}%`
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-4xl min-h-[72vh] md:min-h-0 md:aspect-[16/10] rounded-3xl bg-white pointer-events-none"
+                  className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-4xl min-h-[72vh] md:min-h-0 md:aspect-[16/11] rounded-3xl bg-white pointer-events-none"
                   style={{ transformOrigin: 'center center', zIndex: 0 }}
                 />
               );
@@ -317,7 +317,7 @@ export function Projects({ containerRef }: ProjectsProps) {
                     animate={{ rotateX: proj.isFlipped ? 180 : 0 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformStyle: 'preserve-3d' }}
-                    className="relative w-full min-h-[72vh] md:min-h-0 md:aspect-[16/10] cursor-pointer"
+                    className="relative w-full min-h-[72vh] md:min-h-0 md:aspect-[16/11] cursor-pointer"
                     onClick={() => isActive && proj.setFlipped((f) => !f)}
                     whileHover={isActive ? { scale: 1.01 } : {}}
                   >

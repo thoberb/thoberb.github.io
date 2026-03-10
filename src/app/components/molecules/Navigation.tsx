@@ -62,13 +62,14 @@ export function Navigation() {
   const defaultOpacity = isDark ? 'opacity-80' : 'opacity-70';
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl ${isDark ? 'bg-black/5' : 'bg-white/5'}`} style={{ paddingTop: 'max(1.5rem, env(safe-area-inset-top))' }}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 md:backdrop-blur-xl ${isDark ? 'md:bg-black/5' : 'md:bg-white/5'}`} style={{ paddingTop: 'max(1.5rem, env(safe-area-inset-top))' }}>
       <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 pb-6">
         <div className="flex items-center justify-between w-full">
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
+            className={`rounded-xl backdrop-blur-md py-1.5 px-3 md:py-0 md:px-0 md:rounded-none md:backdrop-blur-none md:bg-transparent ${isDark ? 'bg-black/15' : 'bg-white/25'}`}
           >
             <Button
               variant="nav"
@@ -103,11 +104,11 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Mobile: hamburger */}
+          {/* Mobile: hamburger avec petit BG blur */}
           <motion.button
             type="button"
             aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            className={`md:hidden p-2 rounded-lg outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${textColor} ${defaultOpacity} hover:opacity-100`}
+            className={`md:hidden p-2.5 rounded-xl backdrop-blur-md outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${textColor} ${defaultOpacity} hover:opacity-100 ${isDark ? 'bg-black/15' : 'bg-white/25'}`}
             onClick={() => setMenuOpen((o) => !o)}
             whileTap={{ scale: 0.95 }}
           >
