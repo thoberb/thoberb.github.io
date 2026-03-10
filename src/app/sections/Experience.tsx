@@ -288,7 +288,7 @@ export function Experience({ containerRef }: ExperienceProps) {
         ref={sectionRef}
         id="experience"
         data-theme="light"
-        className="h-screen flex flex-col bg-gray-50 snap-start snap-always relative overflow-hidden"
+        className="h-screen flex flex-col bg-gray-50 md:snap-start md:snap-always relative overflow-hidden"
         style={{ borderTopLeftRadius: isStuck ? '0' : '48px', borderTopRightRadius: isStuck ? '0' : '48px' }}
       >
       <motion.div

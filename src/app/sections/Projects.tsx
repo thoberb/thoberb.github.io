@@ -211,7 +211,7 @@ export function Projects({ containerRef }: ProjectsProps) {
         ref={sectionRef}
         id="projects"
         data-theme="light"
-        className="h-screen flex flex-col snap-start snap-always relative overflow-hidden bg-white"
+        className="h-screen flex flex-col md:snap-start md:snap-always relative overflow-hidden bg-white"
         style={{ borderTopLeftRadius: '48px', borderTopRightRadius: '48px' }}
       >
       {/* Animation en arrière-plan (partout) */}

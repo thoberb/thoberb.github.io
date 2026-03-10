@@ -117,7 +117,7 @@ export function Education({ containerRef }: EducationProps) {
         ref={sectionRef}
         id="education"
         data-theme="light"
-        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-white snap-start snap-always relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-white md:snap-start md:snap-always relative overflow-hidden"
         style={{ borderTopLeftRadius: isStuck ? '0' : '48px', borderTopRightRadius: isStuck ? '0' : '48px' }}
       >
       <motion.div className="max-w-[1280px] w-full relative z-10" style={{ opacity, y }}>

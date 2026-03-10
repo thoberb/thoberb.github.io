@@ -72,7 +72,7 @@ export function Contact({ containerRef }: ContactProps) {
         ref={sectionRef}
         id="contact"
         data-theme="dark"
-        className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6 py-20 relative snap-start snap-always overflow-hidden"
+        className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6 py-20 relative md:snap-start md:snap-always overflow-hidden"
         style={{ borderTopLeftRadius: isStuck ? '0' : '48px', borderTopRightRadius: isStuck ? '0' : '48px' }}
       >
       {/* Animated gradient orbs in background */}

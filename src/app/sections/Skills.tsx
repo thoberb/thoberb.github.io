@@ -111,7 +111,7 @@ export function Skills({ containerRef }: SkillsProps) {
         ref={sectionRef}
         id="skills"
         data-theme="light"
-        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-gray-50 snap-start snap-always relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-gray-50 md:snap-start md:snap-always relative overflow-hidden"
         style={{ borderTopLeftRadius: isStuck ? '0' : '48px', borderTopRightRadius: isStuck ? '0' : '48px' }}
       >
       <motion.div className="max-w-[1280px] w-full relative z-10" style={{ opacity, y }}>

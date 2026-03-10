@@ -80,7 +80,7 @@ export function About({ containerRef }: AboutProps) {
         ref={sectionRef}
         id="about"
         data-theme="light"
-        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-white snap-start snap-always relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-6 md:px-20 py-32 bg-white md:snap-start md:snap-always relative overflow-hidden"
         style={{ borderTopLeftRadius: isStuck ? '0' : '48px', borderTopRightRadius: isStuck ? '0' : '48px' }}
       >
       <motion.div 

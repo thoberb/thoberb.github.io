@@ -38,7 +38,7 @@ export function Hero({ containerRef }: HeroProps) {
   };
 
   return (
-    <section ref={sectionRef} id="home" data-theme="dark" className="min-h-screen flex items-center px-6 overflow-x-clip snap-start snap-always relative w-full" style={{ backgroundColor: '#050505' }}>
+    <section ref={sectionRef} id="home" data-theme="dark" className="min-h-screen flex items-center px-6 overflow-x-clip md:snap-start md:snap-always relative w-full" style={{ backgroundColor: '#050505' }}>
       {/* Minimal atmospheric background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Soft gradient glows - very subtle and more blurred */}

@@ -14,7 +14,8 @@ export default function App() {
   return (
     <div
         ref={containerRef}
-        className="relative min-h-screen snap-y snap-mandatory overflow-y-auto overflow-x-hidden h-screen w-full"
+        data-scroll-container
+        className="relative min-h-screen md:snap-y md:snap-mandatory overflow-y-auto overflow-x-hidden h-screen w-full"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
       <Navigation />

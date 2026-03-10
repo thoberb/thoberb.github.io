@@ -40,7 +40,7 @@ export function Navigation() {
       setCurrentTheme(found ?? 'dark'); // défaut dark = texte clair sur Hero
     };
 
-    const container = document.querySelector('.snap-y');
+    const container = document.querySelector('[data-scroll-container]');
     if (container) container.addEventListener('scroll', observeSections);
     observeSections();
 
